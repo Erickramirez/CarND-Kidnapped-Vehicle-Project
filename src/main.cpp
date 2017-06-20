@@ -1,4 +1,4 @@
-#include <uWS/src/uWS.h>
+#include <uWS/uWS.h>
 #include <iostream>
 #include "json.hpp"
 #include <math.h>
