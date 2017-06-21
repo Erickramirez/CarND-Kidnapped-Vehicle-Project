@@ -63,11 +63,12 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
        if (fabs(dth)>0.001){
             particles[i].x +=   v/dth*(sin(th+dth*delta_t) - sin(th))+ std_pos[0]*g_distribution(generator);
             particles[i].y +=  -v/dth*(cos(th+dth*delta_t) - cos(th))+ std_pos[1]*g_distribution(generator);
+            particles[i].theta = fmod(particles[i].theta + dth*delta_t+ std_pos[2]*g_distribution(generator),2.0*M_PI);
         } else {
             particles[i].x += v*cos(th)*delta_t+ std_pos[0]*g_distribution(generator);
             particles[i].y += v*sin(th)*delta_t+ std_pos[1]*g_distribution(generator);
         }
-	particles[i].theta = fmod(particles[i].theta + dth*delta_t+ std_pos[2]*g_distribution(generator),2.0*M_PI);
+
     }
 
 }
